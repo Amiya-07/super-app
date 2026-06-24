@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Super App
 
-## Getting Started
+A modern entertainment dashboard built with Next.js, React, Tailwind CSS, Zustand, and multiple external APIs.
 
-First, run the development server:
+## Features
+
+### Authentication & Registration
+
+* User registration form
+* Form validation
+* Zustand state management
+* User data persistence
+
+### Category Selection
+
+* Entertainment category onboarding
+* Minimum 3 category validation
+* Selected category management
+
+### Dashboard
+
+* User Profile Card
+* Live Weather Widget (OpenWeather API)
+* Live News Feed (News API)
+* Notes Widget with Local Storage
+* Countdown Timer
+
+### Entertainment Discovery
+
+* Movie recommendations using OMDb API
+* Category-based movie fetching
+* Movie cards with hover animations
+* Movie details modal popup
+
+## Tech Stack
+
+### Frontend
+
+* Next.js 16
+* React
+* TypeScript
+* Tailwind CSS
+
+### State Management
+
+* Zustand
+
+### APIs
+
+* OpenWeather API
+* News API
+* OMDb API
+
+### Deployment
+
+* GitHub
+* Netlify / Vercel
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Amiya-07/super-app.git
+```
+
+Navigate to project:
+
+```bash
+cd super-app
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create `.env.local` file:
+
+```env
+NEXT_PUBLIC_WEATHER_API_KEY=YOUR_WEATHER_KEY
+NEXT_PUBLIC_NEWS_API_KEY=YOUR_NEWS_KEY
+NEXT_PUBLIC_OMDB_API_KEY=YOUR_OMDB_KEY
+```
+
+Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```text
+app/
+├── register
+├── categories
+├── dashboard
+├── movies
 
-To learn more about Next.js, take a look at the following resources:
+components/
+├── ProfileCard
+├── WeatherCard
+├── NewsCard
+├── NotesCard
+├── TimerCard
+├── MovieCard
+├── MovieModal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+services/
+├── weather.ts
+├── news.ts
+├── movies.ts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+store/
+├── useStore.ts
+```
 
-## Deploy on Vercel
+## Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Amiya Ranjan  Sing Nayak
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Full Stack Java Developer
+
+## Future Enhancements
+
+* Authentication with JWT
+* User login/logout
+* Dark/Light theme
+* Advanced movie filtering
+* Search functionality
+* Favorites & Watchlist
+* Responsive mobile dashboard
+* PWA support
