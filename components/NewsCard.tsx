@@ -1,22 +1,67 @@
-export const fetchNews = async () => {
-  return [
-    {
-      title: "AI is transforming software development",
-      description: "New AI tools are helping developers build applications faster.",
-      urlToImage:
-        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
-    },
-    {
-      title: "Cloud Computing Continues to Grow",
-      description: "Businesses are increasingly adopting cloud technologies.",
-      urlToImage:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
-    },
-    {
-      title: "React and Next.js Remain Popular",
-      description: "Developers continue choosing React and Next.js for modern web applications.",
-      urlToImage:
-        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    },
-  ];
-};
+'use client';
+
+import { useEffect, useState } from 'react';
+import { fetchNews } from '@/services/news';
+
+export default function NewsCard() {
+  const [articles, setArticles] = useState<any[]>([]);
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const loadNews = async () => {
+      try {
+        const data = await fetchNews();
+
+        console.log('NEWS DATA:', data);
+
+        setArticles(data);
+      } catch (error) {
+        console.error('News Error:', error);
+      }
+    };
+
+    loadNews();
+  }, []);
+
+  useEffect(() => {
+    if (!articles.length) return;
+
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % articles.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [articles]);
+
+  if (!articles.length) {
+    return (
+      <div className="bg-white rounded-3xl p-4 text-black">
+        Loading News...
+      </div>
+    );
+  }
+
+  const article = articles[current];
+
+  return (
+    <div className="bg-white rounded-3xl overflow-hidden text-black">
+      {article.urlToImage && (
+        <img
+          src={article.urlToImage}
+          alt={article.title}
+          className="w-full h-48 object-cover"
+        />
+      )}
+
+      <div className="p-4">
+        <h3 className="font-bold text-lg">
+          {article.title}
+        </h3>
+
+        <p className="text-sm mt-2">
+          {article.description}
+        </p>
+      </div>
+    </div>
+  );
+}
